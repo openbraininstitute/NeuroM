@@ -33,3 +33,4 @@ from neurom.core.population import Population
 
 # those imports here for backward compatibility
 from neurom.core.soma import Soma
+from neurom.core.morphology_with_spines import MorphologyWithSpines

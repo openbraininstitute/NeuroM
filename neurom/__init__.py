@@ -60,11 +60,12 @@ __version__ = version(__package__)
 
 from neurom.core.dataformat import COLS
 from neurom.core.morphology import graft_morphology, iter_neurites, iter_sections, iter_segments
+from neurom.core.morphology_with_spines import MorphologyWithSpines
 from neurom.core.types import NEURITES as NEURITE_TYPES
 from neurom.core.types import NeuriteIter, NeuriteType
 from neurom.exceptions import NeuroMDeprecationWarning
 from neurom.features import get
-from neurom.io.utils import MorphLoader, load_morphologies, load_morphology
+from neurom.io.utils import MorphLoader, load_morphologies, load_morphology, load_morphology_with_spines
 
 APICAL_DENDRITE = NeuriteType.apical_dendrite
 BASAL_DENDRITE = NeuriteType.basal_dendrite
