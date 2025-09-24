@@ -65,7 +65,12 @@ from neurom.core.types import NEURITES as NEURITE_TYPES
 from neurom.core.types import NeuriteIter, NeuriteType
 from neurom.exceptions import NeuroMDeprecationWarning
 from neurom.features import get
-from neurom.io.utils import MorphLoader, load_morphologies, load_morphology, load_morphology_with_spines
+from neurom.io.utils import (
+    MorphLoader,
+    load_morphologies,
+    load_morphology,
+    load_morphology_with_spines,
+)
 
 APICAL_DENDRITE = NeuriteType.apical_dendrite
 BASAL_DENDRITE = NeuriteType.basal_dendrite
