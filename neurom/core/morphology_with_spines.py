@@ -96,8 +96,6 @@ class MorphologyWithSpines(Morphology):
         A helper that transforms all centered (in local coordinate system)
         spine skeletons of this class to the global neuron coordinate system.
         """
-        # Must be in here to avoid circular imports
-        from neurom import load_morphology  # pylint: disable=import-outside-toplevel
 
         spines = self._centered_spine_skeletons.to_morphio().as_mutable()
         assert len(spines.root_sections) == self.spine_table.shape[0]
@@ -110,7 +108,7 @@ class MorphologyWithSpines(Morphology):
                     sec.points = pts
                     lst_out.extend(sec.children)
                 lst_in = lst_out
-        return load_morphology(spines.as_immutable())
+        return Morphology(spines.as_immutable(), name=self.name + "_spines")
 
     @property
     def spine_skeletons(self):
