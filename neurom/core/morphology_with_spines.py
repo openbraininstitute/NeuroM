@@ -9,6 +9,8 @@ import trimesh
 
 from scipy.spatial.transform import Rotation
 
+from neurom.core.morphology import Morphology
+
 # Columns of edge table dataframes
 _C_SPINE_MESH = "spine_morphology"
 _C_SPINE_ID = "spine_id"
@@ -28,7 +30,7 @@ GRP_TRIANGLES = "triangles"
 GRP_OFFSETS = "offsets"
 
 
-class MorphologyWithSpines:
+class MorphologyWithSpines(Morphology):
     """Represents spiny neuron morphology.
 
     A helper class to access the advanced information contained
@@ -39,21 +41,24 @@ class MorphologyWithSpines:
         self,
         meshes_filename,
         morphology_name,
-        morphology,
+        morphio_morphology,
         spine_table,
         centered_spine_skeletons,
         spines_are_centered=True,
+        process_subtrees=False,
     ):
         """Default constructor.
 
         morphio.io.utils.load_morphology_with_spines() intended for users.
         """
+        super().__init__(
+            morphio_morphology, name=morphology_name, process_subtrees=process_subtrees
+        )
         self._fn = meshes_filename
         self.name = morphology_name
         self._spines_are_centered = spines_are_centered
         self._centered_spine_skeletons = centered_spine_skeletons
         self.spine_table = spine_table
-        self.smooth_morphology = morphology
 
         if self._spines_are_centered:
             self._spine_skeletons = self._transform_spine_skeletons()

@@ -221,7 +221,9 @@ def load_morphologies(
     )
 
 
-def load_morphology_with_spines(morphology_fn, morphology_name=None, spines_are_centered=True):
+def load_morphology_with_spines(
+    morphology_fn, morphology_name=None, spines_are_centered=True, process_subtrees=False
+):
     """Load a neuron morphology with spines.
 
     Loads a neuron morphology with spines from a hdf5 archive.
@@ -242,7 +244,7 @@ def load_morphology_with_spines(morphology_fn, morphology_name=None, spines_are_
     centered_spine_skeletons = load_morphology(
         coll.load(GRP_SPINES + "/" + GRP_SKELETONS + "/" + morphology_name)
     )
-    smooth_morphology = load_morphology(coll.load(GRP_MORPH + "/" + morphology_name))
+    smooth_morphology = coll.load(GRP_MORPH + "/" + morphology_name)
     return MorphologyWithSpines(
         morphology_fn,
         morphology_name,
@@ -250,4 +252,5 @@ def load_morphology_with_spines(morphology_fn, morphology_name=None, spines_are_
         spine_table,
         centered_spine_skeletons,
         spines_are_centered=spines_are_centered,
+        process_subtrees=process_subtrees,
     )
