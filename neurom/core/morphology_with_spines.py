@@ -16,6 +16,7 @@ _C_SPINE_MESH = "spine_morphology"
 _C_SPINE_ID = "spine_id"
 _C_ROTATION = ["spine_rotation_x", "spine_rotation_y", "spine_rotation_z", "spine_rotation_w"]
 _C_TRANSLATION = ["afferent_surface_x", "afferent_surface_y", "afferent_surface_z"]
+_C_AFF_SEC = "afferent_section_id"
 
 
 # Names of groups in the morphology-w-spines hdf5 file
@@ -188,6 +189,55 @@ class MorphologyWithSpines(Morphology):
             vertices=self.centered_mesh_points(i), faces=self.spine_mesh_triangles(i)
         )
         return tm
+
+    def spine_indices_for_section(self, sec_id):
+        """Indices of spines on a given section.
+
+        Returns the indices (indices for .spine_table or .spine_mesh()) of
+        spines located on the specified section.
+        """
+        return self.spine_table_for_section(sec_id).index.to_numpy()
+
+    def spine_table_for_section(self, sec_id):
+        """Table of spines on a given section.
+
+        Returns the rows of the .spine_table for spines located on the
+        specified section.
+        """
+        return self.spine_table.loc[self.spine_table[_C_AFF_SEC] == sec_id]
+
+    def spine_meshes_for_section(self, sec_id):
+        """Spine meshes for a given section
+
+        Iterator that lists the meshes of spines located on the specified
+        section.
+        """
+        for idx in self.spine_indices_for_section(sec_id):
+            yield self.spine_mesh(idx)
+
+    def compound_spine_mesh_for_section(self, sec_id):
+        """Single spine mesh for a given section
+
+        A single compound mesh for all spines located on the section is returned.
+        """
+        return trimesh.util.concatenate(self.spine_meshes_for_section(sec_id))
+
+    def centered_spine_meshes_for_section(self, sec_id):
+        """Centered spine meshes for a given section
+
+        Iterator that lists the meshes of spines located on the specified
+        section. Meshes are transformed to be centered and upright.
+        """
+        for idx in self.spine_indices_for_section(sec_id):
+            yield self.centered_spine_mesh(idx)
+
+    def compound_centered_spine_mesh_for_section(self, sec_id):
+        """Single spine mesh for a given section
+
+        A single compound mesh for all spines located on the section is returned.
+        Meshes are transformed to be centered and upright.
+        """
+        return trimesh.util.concatenate(self.centered_spine_meshes_for_section(sec_id))
 
     @property
     def soma_mesh_points(self):
