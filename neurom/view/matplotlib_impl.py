@@ -43,7 +43,12 @@ from neurom.core.soma import SomaCylinders
 from neurom.core.types import tree_type_checker
 from neurom.morphmath import segment_radius
 from neurom.view import matplotlib_utils
-from neurom.view.dendrogram import Dendrogram, get_size, layout_dendrogram, move_positions
+from neurom.view.dendrogram import (
+    Dendrogram,
+    get_size,
+    layout_dendrogram,
+    move_positions,
+)
 
 _LINEWIDTH = 1.2
 _ALPHA = 0.8
@@ -219,10 +224,22 @@ def plot_soma(
                 color=color,
                 alpha=alpha,
             )
+        radii = soma.points[:, COLS.R]
+        datalim = np.array(
+            [
+                [np.min(soma.points[:, plane0] - radii), np.min(soma.points[:, plane1] - radii)],
+                [np.max(soma.points[:, plane0] + radii), np.max(soma.points[:, plane1] + radii)],
+            ]
+        )
     else:
         if soma_outline:
             ax.add_artist(
                 Circle(soma.center[[plane0, plane1]], soma.radius, color=color, alpha=alpha)
+            )
+            center = soma.center
+            r = soma.radius
+            datalim = np.array(
+                [[center[plane0] - r, center[plane1] - r], [center[plane0] + r, center[plane1] + r]]
             )
         else:
             points = [[p[plane0], p[plane1]] for p in soma.iter()]
@@ -230,20 +247,17 @@ def plot_soma(
                 points.append(points[0])  # close the loop
                 x, y = tuple(np.array(points).T)
                 ax.plot(x, y, color=color, alpha=alpha, linewidth=linewidth)
+            bounding_box = geom.bounding_box(soma)
+            datalim = np.array(
+                [
+                    [bounding_box[0][plane0], bounding_box[0][plane1]],
+                    [bounding_box[1][plane0], bounding_box[1][plane1]],
+                ]
+            )
 
     ax.set_xlabel(plane[0])
     ax.set_ylabel(plane[1])
-
-    bounding_box = geom.bounding_box(soma)
-    ax.dataLim.update_from_data_xy(
-        np.vstack(
-            (
-                [bounding_box[0][plane0], bounding_box[0][plane1]],
-                [bounding_box[1][plane0], bounding_box[1][plane1]],
-            )
-        ),
-        ignore=False,
-    )
+    ax.update_datalim(datalim)
 
 
 # pylint: disable=too-many-arguments
