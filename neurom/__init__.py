@@ -54,6 +54,7 @@ Examples:
     >>> mapping = lambda n, section_type : len(n.points)
     >>> n_points = [n for n in nm.iter_neurites(pop, mapping, filter)]
 """
+
 from importlib.metadata import version
 
 __version__ = version(__package__)

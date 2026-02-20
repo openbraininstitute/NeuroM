@@ -313,8 +313,7 @@ def test_has_no_jumps():
 
 
 def test_has_no_narrow_dendritic_section():
-    swc_content = StringIO(
-        u"""
+    swc_content = StringIO(u"""
 # index, type, x, y, z, radius, parent
     1 1  0  0 0 10. -1
     2 2  0  0 0 10.  1
@@ -325,8 +324,7 @@ def test_has_no_narrow_dendritic_section():
     7 3  0 -4 0 5.  6
     8 3  6 -4 0 10.  7
     9 3 -5 -4 0 10.  7
-"""
-    )
+""")
     m = load_morphology(swc_content, reader='swc')
     res = morphology_checks.has_no_narrow_neurite_section(
         m, dendrite_filter, radius_threshold=5, considered_section_min_length=0
@@ -339,8 +337,7 @@ def test_has_no_narrow_dendritic_section():
     )
     assert not res.status
 
-    swc_content = StringIO(
-        u"""
+    swc_content = StringIO(u"""
 # index, type, x, y, z, radius, parent
     1 1  0  0 0 10. -1
     2 2  0  0 0 5  1 # narrow soma
@@ -351,8 +348,7 @@ def test_has_no_narrow_dendritic_section():
     7 3  0 -4 0 10.  6
     8 3  6 -4 0 10.  7
     9 3 -5 -4 0 10.  7
-"""
-    )
+""")
     m = load_morphology(swc_content, reader='swc')
     res = morphology_checks.has_no_narrow_neurite_section(
         m, dendrite_filter, radius_threshold=5, considered_section_min_length=0
@@ -394,8 +390,7 @@ def test__bool__():
 
 def test_has_multifurcation():
     m = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
 	((CellBody) (-1 0 0 2) (1 0 0 2))
 ( (Color Blue)
   (Axon)
@@ -416,8 +411,7 @@ def test_has_multifurcation():
     (4 13 0 2)
   )
 )
-"""
-        ),
+"""),
         reader='asc',
     )
 
@@ -430,8 +424,7 @@ def test_has_multifurcation():
 
 def test_has_unifurcation():
     m = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
 ((CellBody) (-1 0 0 2) (1 0 0 2))
 
  ((Dendrite)
@@ -446,8 +439,7 @@ def test_has_unifurcation():
    (6 5 0 3)
    )
   )
-"""
-        ),
+"""),
         reader='asc',
     )
 

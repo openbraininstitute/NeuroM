@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Type enumerations."""
+
 import collections.abc
 from enum import Enum, EnumMeta, unique
 

@@ -41,8 +41,7 @@ def _generate_back_track_tree(n, dev):
     points = np.array(dev) + np.array([1, 3 if n == 0 else -3, 0])
 
     m = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
     ((CellBody) (-1 0 0 2) (1 0 0 2))
 
     ((Dendrite)
@@ -61,10 +60,7 @@ def _generate_back_track_tree(n, dev):
       (3 -5 0 0.2)
       (4 -6 0 0.2)
     ))
-    """.format(
-                *points.tolist()
-            )
-        ),
+    """.format(*points.tolist())),
         reader='asc',
     )
 
@@ -74,8 +70,7 @@ def _generate_back_track_tree(n, dev):
 def test_is_monotonic():
     # tree with decreasing radii
     m = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
         ((Dendrite)
         (0 0 0 1.0)
         (0 0 0 0.99)
@@ -85,16 +80,14 @@ def test_is_monotonic():
           |
           (0 0 0 0.5)
           (0 0 0 0.2)
-        ))"""
-        ),
+        ))"""),
         reader='asc',
     )
     assert mt.is_monotonic(m.neurites[0], 1e-6)
 
     # tree with equal radii
     m = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
         ((Dendrite)
         (0 0 0 1.0)
         (0 0 0 1.0)
@@ -104,16 +97,14 @@ def test_is_monotonic():
           |
           (0 0 0 1.0)
           (0 0 0 1.0)
-        ))"""
-        ),
+        ))"""),
         reader='asc',
     )
     assert mt.is_monotonic(m.neurites[0], 1e-6)
 
     # tree with increasing radii
     m = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
         ((Dendrite)
         (0 0 0 1.0)
         (0 0 0 1.0)
@@ -123,16 +114,14 @@ def test_is_monotonic():
           |
           (0 0 0 0.3)
           (0 0 0 0.1)
-        ))"""
-        ),
+        ))"""),
         reader='asc',
     )
     assert not mt.is_monotonic(m.neurites[0], 1e-6)
 
     # Tree with larger child initial point
     m = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
         ((Dendrite)
         (0 0 0 1.0)
         (0 0 0 0.75)
@@ -142,8 +131,7 @@ def test_is_monotonic():
           (0 0 0 0.375)
           (0 0 0 0.125)
           (0 0 0 0.625)
-        ))"""
-        ),
+        ))"""),
         reader='asc',
     )
     assert not mt.is_monotonic(m.neurites[0], 1e-6)

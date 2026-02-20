@@ -28,13 +28,13 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Calculate and plot end-to-end distance of neurites."""
+
 from pathlib import Path
 
 import neurom as nm
 from neurom import morphmath
 import numpy as np
 import matplotlib.pyplot as plt
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 

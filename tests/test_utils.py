@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Test neurom.utils."""
+
 import json
 import warnings
 from copy import deepcopy

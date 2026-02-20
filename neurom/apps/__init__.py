@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Helper code for neurom applications."""
+
 import logging
 import sys
 from pathlib import Path

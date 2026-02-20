@@ -28,13 +28,13 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Calculate radius of gyration of neurites."""
+
 from pathlib import Path
 
 import neurom as nm
 from neurom import morphmath as mm
 from neurom.core.dataformat import COLS
 import numpy as np
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 

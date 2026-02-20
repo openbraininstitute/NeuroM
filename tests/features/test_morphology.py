@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Test ``neurom.features.morphology``."""
+
 from math import pi, sqrt
 import tempfile
 import warnings
@@ -47,7 +48,6 @@ from neurom import NeuriteType, load_morphology, AXON, BASAL_DENDRITE
 from neurom.core import Morphology, Population
 from neurom.exceptions import NeuroMError
 from neurom.features import morphology, population, section
-
 
 DATA_PATH = Path(__file__).parent.parent / 'data'
 H5_PATH = DATA_PATH / 'h5/v1'
@@ -158,8 +158,7 @@ def test_trunk_section_lengths():
 
 
 def test_trunk_origin_radii():
-    morph = load_swc(
-        """
+    morph = load_swc("""
      1 1  0  0 0 1. -1
      2 3  0  0 0 1.0  1
      3 3  0  5 0 0.5  2
@@ -169,8 +168,7 @@ def test_trunk_origin_radii():
      7 2  0 -4 0 0.25  6
      8 2  6 -4 0 0.  7
      9 2 -5 -4 0 0.  7
-    """
-    )
+    """)
     ret = morphology.trunk_origin_radii(morph)
     assert ret == [1.0, 1.0]
 
@@ -448,26 +446,22 @@ def test_trunk_vectors():
 
 def test_trunk_origin_elevations():
     n0 = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
     1 1 0 0 0 4 -1
     2 3 1 0 0 2 1
     3 3 2 1 1 2 2
     4 3 0 1 0 2 1
     5 3 1 2 1 2 4
-    """
-        ),
+    """),
         reader='swc',
     )
 
     n1 = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
     1 1 0 0 0 4 -1
     2 3 0 -1 0 2 1
     3 3 -1 -2 -1 2 2
-    """
-        ),
+    """),
         reader='swc',
     )
 
@@ -579,14 +573,12 @@ def test_sholl_analysis_custom():
     # http://dx.doi.org/10.1016/j.jneumeth.2014.01.016
     radii = np.arange(10, 81, 10)
     center = 0, 0, 0
-    morph_A = load_swc(
-        """\
+    morph_A = load_swc("""\
  1 1   0  0  0 1. -1
  2 3   0  0  0 1.  1
  3 3  80  0  0 1.  2
  4 4   0  0  0 1.  1
- 5 4 -80  0  0 1.  4"""
-    )
+ 5 4 -80  0  0 1.  4""")
     assert list(morphology.sholl_crossings(morph_A, center=center, radii=radii)) == [
         2,
         2,
@@ -598,8 +590,7 @@ def test_sholl_analysis_custom():
         2,
     ]
 
-    morph_B = load_swc(
-        """\
+    morph_B = load_swc("""\
  1 1   0   0  0 1. -1
  2 3   0   0  0 1.  1
  3 3  35   0  0 1.  2
@@ -614,8 +605,7 @@ def test_sholl_analysis_custom():
 12 4 -51   0  0 1.  9
 13 4 -51  -5  0 1.  9
 14 4 -51 -10  0 1.  9
-                       """
-    )
+                       """)
     assert list(morphology.sholl_crossings(morph_B, center=center, radii=radii)) == [
         2,
         2,
@@ -627,8 +617,7 @@ def test_sholl_analysis_custom():
         0,
     ]
 
-    morph_C = load_swc(
-        """\
+    morph_C = load_swc("""\
  1 1   0   0  0 1. -1
  2 3   0   0  0 1.  1
  3 3  65   0  0 1.  2
@@ -643,8 +632,7 @@ def test_sholl_analysis_custom():
 12 4  85   0  0 1.  9
 13 4  85  -5  0 1.  9
 14 4  85 -10  0 1.  9
-                       """
-    )
+                       """)
     assert list(morphology.sholl_crossings(morph_C, center=center, radii=radii)) == [
         2,
         2,
@@ -658,30 +646,26 @@ def test_sholl_analysis_custom():
 
 
 def test_extent_along_axis():
-    morph = load_swc(
-        """
+    morph = load_swc("""
         1 1   0  0   0 1. -1
         2 3   0  -60 0 1.  1
         3 3  80  0   2 1.  2
         4 4   0  60  3 1.  1
         5 4 -80  0.  0 1.  4
-    """
-    )
+    """)
     assert_almost_equal(morphology._extent_along_axis(morph, 0, NeuriteType.all), 160.0)
     assert_almost_equal(morphology._extent_along_axis(morph, 1, NeuriteType.all), 120.0)
     assert_almost_equal(morphology._extent_along_axis(morph, 2, NeuriteType.all), 3.0)
 
 
 def test_total_width():
-    morph = load_swc(
-        """
+    morph = load_swc("""
         1 1   0  0   0 1. -1
         2 3   0  -60 0 1.  1
         3 3  80  0   2 1.  2
         4 4   0  60  3 1.  1
         5 4 -80  0.  0 1.  4
-    """
-    )
+    """)
     assert_almost_equal(morphology.total_width(morph, neurite_type=NeuriteType.axon), 0.0)
     assert_almost_equal(
         morphology.total_width(morph, neurite_type=NeuriteType.basal_dendrite), 80.0
@@ -692,15 +676,13 @@ def test_total_width():
 
 
 def test_total_height():
-    morph = load_swc(
-        """
+    morph = load_swc("""
         1 1   0  0   0 1. -1
         2 3   0  -60 0 1.  1
         3 3  80  0   2 1.  2
         4 4   0  60  3 1.  1
         5 4 -80  0.  0 1.  4
-    """
-    )
+    """)
     assert_almost_equal(morphology.total_height(morph, neurite_type=NeuriteType.axon), 0.0)
     assert_almost_equal(
         morphology.total_height(morph, neurite_type=NeuriteType.basal_dendrite), 60.0
@@ -711,15 +693,13 @@ def test_total_height():
 
 
 def test_total_depth():
-    morph = load_swc(
-        """
+    morph = load_swc("""
         1 1   0  0   0 1. -1
         2 3   0  -60 0 1.  1
         3 3  80  0   2 1.  2
         4 4   0  60  3 1.  1
         5 4 -80  0.  0 1.  4
-    """
-    )
+    """)
     assert_almost_equal(morphology.total_depth(morph, neurite_type=NeuriteType.axon), 0.0)
     assert_almost_equal(morphology.total_depth(morph, neurite_type=NeuriteType.basal_dendrite), 2.0)
     assert_almost_equal(
@@ -728,8 +708,7 @@ def test_total_depth():
 
 
 def test_volume_density():
-    morph = load_swc(
-        """
+    morph = load_swc("""
         1  1   0.5      0.5      0.5        0.5 -1
         2  3   0.211324 0.211324 0.788675   0.1  1
         3  3   0.0      0.0      1.0        0.1  2
@@ -747,8 +726,7 @@ def test_volume_density():
        15  2   1.0      0.0      0.0        0.1  14
        16  3   0.788675 0.788675 0.788675   0.1  1
        17  3   1.0      1.0      1.0        0.1  16
-    """
-    )
+    """)
 
     # the neurites sprout from the center of a cube to its vertices, therefore the convex hull
     # is the cube itself of side 1.0
@@ -796,8 +774,7 @@ def test_volume_density():
 
 
 def test_unique_projected_points():
-    morph = load_swc(
-        """
+    morph = load_swc("""
         1  1   0.5 0.5 0.5   0.5 -1
         2  3   0.2 0.2 0.7   0.1  1
         3  3   0.0 0.0 1.0   0.1  2
@@ -815,8 +792,7 @@ def test_unique_projected_points():
        15  2   1.0 0.0 0.0   0.1  14
        16  3   0.7 0.7 0.7   0.1  1
        17  3   1.0 1.0 1.0   0.1  16
-    """
-    )
+    """)
 
     for plane, enalp in zip(("xy", "xz", "yz"), ("yx", "zx", "zy")):
         assert_allclose(

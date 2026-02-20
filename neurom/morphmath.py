@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Mathematical and geometrical functions used to compute morphometrics."""
+
 import logging
 import math
 from itertools import combinations

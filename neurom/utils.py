@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """NeuroM helper utilities."""
+
 import json
 import warnings
 from enum import Enum

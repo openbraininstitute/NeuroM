@@ -28,12 +28,12 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Example for comparison of the same feature of multiple cells."""
+
 from pathlib import Path
 
 import pylab as pl
 import neurom as nm
 from neurom.io.utils import get_morph_files
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 

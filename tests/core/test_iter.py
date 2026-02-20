@@ -293,8 +293,7 @@ def test_iter_segments_pop():
 
 def test_iter_segments_section():
     sec = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
 	                      ((CellBody) (-1 0 0 2) (1 0 0 2))
 
 	                      ((Dendrite)
@@ -302,8 +301,7 @@ def test_iter_segments_section():
                           (5 6 7 16)
                           (8 7 6 10)
                           (4 3 2 2))
-                       """
-        ),
+                       """),
         reader='asc',
     ).sections[0]
     ref = [[p1[COLS.XYZR].tolist(), p2[COLS.XYZR].tolist()] for p1, p2 in iter_segments(sec)]
@@ -317,8 +315,7 @@ def test_iter_segments_section():
 
 def test_iter_segments_neurite():
     morph = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                           ((CellBody) (-1 0 0 2) (1 0 0 2))
 
                           ((Dendrite)
@@ -326,8 +323,7 @@ def test_iter_segments_neurite():
                           (5 6 7 16)
                           (8 7 6 10)
                           (4 3 2 2))
-                       """
-        ),
+                       """),
         reader='asc',
     )
     neurite = morph.neurites[0]

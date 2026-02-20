@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Simple Histogram function for multiple morphologies."""
+
 from pathlib import Path
 
 from itertools import chain
@@ -35,7 +36,6 @@ import numpy as np
 import neurom.features
 from neurom.view import matplotlib_utils
 from neurom import load_morphologies
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 
