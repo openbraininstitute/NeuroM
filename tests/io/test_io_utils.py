@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Test neurom.io.utils."""
+
 import warnings
 import os
 from contextlib import contextmanager

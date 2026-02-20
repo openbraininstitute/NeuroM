@@ -27,12 +27,12 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Box Plot function for multiple morphs."""
+
 from pathlib import Path
 
 from neurom import load_morphologies
 from neurom.view import matplotlib_utils
 from neurom.features import get
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 

@@ -30,6 +30,7 @@
 
 Contains functions for checking validity of morphology neurites and somata.
 """
+
 from itertools import islice
 
 import numpy as np

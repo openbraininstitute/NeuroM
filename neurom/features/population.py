@@ -39,7 +39,6 @@ namespace can only accept a morphology population as its input no matter how cal
 For more details see :ref:`features`.
 """
 
-
 from functools import partial
 
 import numpy as np

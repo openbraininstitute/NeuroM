@@ -275,8 +275,7 @@ def test_empty_sibling():
 
 def test_single_children():
     n = load_morphology(
-        StringIO(
-            """
+        StringIO("""
                      ((Dendrite)
                       (3 -4 0 2)
                       (3 -6 0 2)
@@ -288,8 +287,7 @@ def test_single_children():
                         (-3 -10 0 2)
                        )
                       )
-                 """
-        ),
+                 """),
         'asc',
     )
 

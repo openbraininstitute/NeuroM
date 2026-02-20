@@ -50,12 +50,10 @@ def test_no_soma_builder():
 
 def test_no_soma():
     sm = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
         ((Dendrite)
         (0 0 0 1.0)
-        (0 0 0 2.0))"""
-        ),
+        (0 0 0 2.0))"""),
         reader='asc',
     ).soma
     assert sm.center is None
@@ -74,12 +72,10 @@ def test_Soma_SinglePoint():
 def test_Soma_contour():
     with warnings.catch_warnings(record=True):
         sm = load_morphology(
-            StringIO(
-                u"""((CellBody)
+            StringIO(u"""((CellBody)
                                       (0 0 0 44)
                                       (0 -44 0 44)
-                                      (0 +44 0 44))"""
-            ),
+                                      (0 +44 0 44))"""),
             reader='asc',
         ).soma
 
@@ -91,11 +87,9 @@ def test_Soma_contour():
 
 def test_Soma_ThreePointCylinder():
     sm = load_morphology(
-        StringIO(
-            u"""1 1 0   0 0 44 -1
+        StringIO(u"""1 1 0   0 0 44 -1
                                   2 1 0 -44 0 44  1
-                                  3 1 0 +44 0 44  1"""
-        ),
+                                  3 1 0 +44 0 44  1"""),
         reader='swc',
     ).soma
     assert 'SomaNeuromorphoThreePointCylinders' in str(sm)
@@ -107,12 +101,10 @@ def test_Soma_ThreePointCylinder():
 def test_Soma_ThreePointCylinder_invalid_radius():
     with warnings.catch_warnings(record=True) as w_list:
         load_morphology(
-            StringIO(
-                u"""
+            StringIO(u"""
                         1 1 0   0 0 1e-8 -1
                         2 1 0 -1e-8 0 1e-8  1
-                        3 1 0 +1e-8 0 1e-8  1"""
-            ),
+                        3 1 0 +1e-8 0 1e-8  1"""),
             reader='swc',
         ).soma
         assert 'Zero radius for SomaNeuromorphoThreePointCylinders' in str(w_list[0])
@@ -129,12 +121,10 @@ def test_Soma_ThreePointCylinder_invalid():
             ),
         ):
             load_morphology(
-                StringIO(
-                    u"""
+                StringIO(u"""
                             1 1 0   0 0 1e-4 -1
                             2 1 0 -44 0 1e-4  1
-                            3 1 0 +44 0 1e-4  1"""
-                ),
+                            3 1 0 +44 0 1e-4  1"""),
                 reader='swc',
             )
     finally:
@@ -151,31 +141,24 @@ def check_SomaC(stream):
 
 def test_SomaC():
     with warnings.catch_warnings(record=True):
-        check_SomaC(
-            u"""((CellBody)
+        check_SomaC(u"""((CellBody)
                         (1 0 0 44)
                         (0 1 0 44)
                         (-1 0 0 44)
-                        (0 -1 0 44)) """
-        )
+                        (0 -1 0 44)) """)
 
         sin_pi_by_4 = math.cos(math.pi / 4.0)
         cos_pi_by_4 = math.sin(math.pi / 4.0)
 
-        check_SomaC(
-            u"""((CellBody)
+        check_SomaC(u"""((CellBody)
                          (1 0 0 44)
                          ({sin} {cos} 0 44)
                          (0 1 0 44)
                          (-1 0 0 44)
                          (-{sin} -{cos} 0 44)
-                         (0 -1 0 44))""".format(
-                sin=sin_pi_by_4, cos=cos_pi_by_4
-            )
-        )
+                         (0 -1 0 44))""".format(sin=sin_pi_by_4, cos=cos_pi_by_4))
 
-        check_SomaC(
-            u"""((CellBody)
+        check_SomaC(u"""((CellBody)
         (1 0 0 44)
         ({sin} {cos} 0 44)
         (0 1 0 44)
@@ -183,39 +166,30 @@ def test_SomaC():
         (-1 0 0 44)
         (-{sin} -{cos} 0 44)
         (0 -1 0 44)
-        ({sin} -{cos} 0 44))""".format(
-                sin=sin_pi_by_4, cos=cos_pi_by_4
-            )
-        )
+        ({sin} -{cos} 0 44))""".format(sin=sin_pi_by_4, cos=cos_pi_by_4))
 
 
 def test_soma_points_2():
     load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                     1 1 0 0 -10 40 -1
-                    2 1 0 0   0 40  1"""
-        ),
+                    2 1 0 0   0 40  1"""),
         reader='swc',
     ).soma
     load_morphology(
-        StringIO(
-            u"""((CellBody)
+        StringIO(u"""((CellBody)
                              (0 0 0 44)
-                             (0 +44 0 44))"""
-        ),
+                             (0 +44 0 44))"""),
         reader='asc',
     ).soma
 
 
 def test_Soma_Cylinders():
     s = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                 1 1 0 0 -10 40 -1
                 2 1 0 0   0 40  1
-                3 1 0 0  10 40  2"""
-        ),
+                3 1 0 0  10 40  2"""),
         reader='swc',
     ).soma
 
@@ -230,12 +204,10 @@ def test_Soma_Cylinders():
     # neuromorpho style
     with warnings.catch_warnings(record=True):
         s = load_morphology(
-            StringIO(
-                u"""
+            StringIO(u"""
                 1 1 0   0 0 10 -1
                 2 1 0 -10 0 10  1
-                3 1 0  10 0 10  1"""
-            ),
+                3 1 0  10 0 10  1"""),
             reader='swc',
         ).soma
 
@@ -248,12 +220,10 @@ def test_Soma_Cylinders():
     # ex: http://neuromorpho.org/dableFiles/brumberg/CNG%20version/april11s1cell-1.CNG.swc
     with warnings.catch_warnings(record=True):
         s = load_morphology(
-            StringIO(
-                u"""
+            StringIO(u"""
                 1 1  0  0 0 10 -1
                 2 1 -2 -6 0 10  1
-                3 1  2  6 0 10  1"""
-            ),
+                3 1  2  6 0 10  1"""),
             reader='swc',
         ).soma
 
@@ -263,15 +233,13 @@ def test_Soma_Cylinders():
     assert_almost_equal(s.volume, 3160.274957542371, decimal=3)
 
     s = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                 1 1 0  0 0  0 -1
                 2 1 0  2 0  2  1
                 3 1 0  4 0  4  2
                 4 1 0  6 0  6  3
                 5 1 0  8 0  8  4
-                6 1 0 10 0 10  5"""
-        ),
+                6 1 0 10 0 10  5"""),
         reader='swc',
     ).soma
 
@@ -293,12 +261,10 @@ def test_soma_overlaps():
 
     # Test with cynlindrical soma
     sm = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                 1 1 0 0 -10 40 -1
                 2 1 0 0   0 40  1
-                3 1 0 0  10 40  2"""
-        ),
+                3 1 0 0  10 40  2"""),
         reader='swc',
     ).soma
     assert isinstance(sm, soma.SomaCylinders)
@@ -316,12 +282,10 @@ def test_soma_overlaps():
 
     # Test with all points in soma for coverage
     sm = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                 1 1 0 0 -10 40 -1
                 2 1 0 0   0 40  1
-                3 1 0 0  10 40  2"""
-        ),
+                3 1 0 0  10 40  2"""),
         reader='swc',
     ).soma
     assert isinstance(sm, soma.SomaCylinders)
@@ -335,14 +299,12 @@ def test_soma_overlaps():
 
     # Test with contour soma
     sm = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                 ((CellBody)
                     (1 0 0 1)
                     (1 1 0 1)
                     (-1 1 0 1)
-                    (-1 0 0 1)) """
-        ),
+                    (-1 0 0 1)) """),
         reader='asc',
     ).soma
     assert isinstance(sm, soma.SomaSimpleContour)
@@ -362,14 +324,12 @@ def test_soma_overlaps():
 
 def test_morphio_soma():
     sm = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                 ((CellBody)
                     (1 0 0 1)
                     (1 1 0 1)
                     (-1 1 0 1)
-                    (-1 0 0 1)) """
-        ),
+                    (-1 0 0 1)) """),
         reader='asc',
     ).soma
 
@@ -385,14 +345,12 @@ def test_morphio_soma():
 
 def test_soma_undefined_area():
     sm = load_morphology(
-        StringIO(
-            u"""
+        StringIO(u"""
                 ((CellBody)
                     (1 0 0 1)
                     (1 1 0 1)
                     (-1 1 0 1)
-                    (-1 0 0 1)) """
-        ),
+                    (-1 0 0 1)) """),
         reader='asc',
     ).soma
     res = soma._soma_undefined_area(sm)

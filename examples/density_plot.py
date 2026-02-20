@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Example for generating density plots."""
+
 from pathlib import Path
 
 import pylab as plt

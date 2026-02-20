@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """The morph-tool command line launcher."""
+
 import logging
 from functools import partial
 

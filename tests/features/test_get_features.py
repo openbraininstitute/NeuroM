@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Test ``neurom.features.get`` function."""
+
 import itertools
 import math
 from io import StringIO
@@ -488,15 +489,13 @@ def test_segment_meander_angles():
 
 def test_segment_meander_angles_single_section():
     m = nm.load_morphology(
-        StringIO(
-            u"""((CellBody) (-1 0 0 2) (1 0 0 2))
+        StringIO(u"""((CellBody) (-1 0 0 2) (1 0 0 2))
                                       ((Dendrite)
                                        (0 0 0 2)
                                        (1 0 0 2)
                                        (1 1 0 2)
                                        (2 1 0 2)
-                                       (2 2 0 2)))"""
-        ),
+                                       (2 2 0 2)))"""),
         reader='asc',
     )
     nrt = m.neurites[0]

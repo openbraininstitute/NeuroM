@@ -31,6 +31,7 @@
 Since the stats module consists of simple wrappers to scipy.stats functions,
 these tests are only sanity checks.
 """
+
 import numpy as np
 from neurom import stats as st
 

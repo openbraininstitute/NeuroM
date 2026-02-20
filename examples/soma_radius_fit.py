@@ -29,13 +29,13 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Extract a distribution for the soma radii of the population (list) of morphologies.
-   for the soma radii of the population (list) of morphologies.
-   """
+for the soma radii of the population (list) of morphologies.
+"""
+
 from pathlib import Path
 
 import neurom as nm
 from neurom import stats as st
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 

@@ -37,7 +37,7 @@ class COLS:
     """Column labels for internal data representation."""
 
     COL_COUNT = _COL_COUNT
-    (X, Y, Z, R) = range(_COL_COUNT)
+    X, Y, Z, R = range(_COL_COUNT)
     XY = slice(0, 2)
     XZ = slice(0, 3, 2)
     YZ = slice(1, 3)

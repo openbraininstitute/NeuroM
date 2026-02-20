@@ -27,6 +27,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Test ``features.population``."""
+
 from neurom import NeuriteType
 from neurom.features import population
 

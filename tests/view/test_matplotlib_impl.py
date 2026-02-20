@@ -167,33 +167,27 @@ def test_dendrogram(get_fig_2d):
 with warnings.catch_warnings(record=True):
     # upright, uniform radius, multiple cylinders
     soma_3pt_normal = load_morphology(
-        StringIO(
-            u"""1 1 0 -10 0 10  -1
+        StringIO(u"""1 1 0 -10 0 10  -1
                                                2 1 0   0 0 10   1
-                                               3 1 0  10 0 10   2"""
-        ),
+                                               3 1 0  10 0 10   2"""),
         reader='swc',
     ).soma
 
     # increasing radius, multiple cylinders
     soma_4pt_normal_cylinder = load_morphology(
-        StringIO(
-            u"""1 1   0   0   0 1 -1
+        StringIO(u"""1 1   0   0   0 1 -1
                                                        2 1   0 -10   0 2  1
                                                        3 1   0 -10  10 4  2
-                                                       4 1 -10 -10 -10 4  3"""
-        ),
+                                                       4 1 -10 -10 -10 4  3"""),
         reader='swc',
     ).soma
 
     soma_4pt_normal_contour = load_morphology(
-        StringIO(
-            u"""((CellBody)
+        StringIO(u"""((CellBody)
                                                        (0     0   0 1)
                                                        (0   -10   0 2)
                                                        (0   -10  10 4)
-                                                       (-10 -10 -10 4))"""
-        ),
+                                                       (-10 -10 -10 4))"""),
         reader='asc',
     ).soma
 

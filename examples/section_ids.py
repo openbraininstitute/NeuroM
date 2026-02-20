@@ -28,12 +28,12 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Get sections and segments by ID."""
+
 from pathlib import Path
 
 import neurom as nm
 from neurom import morphmath as mm
 from neurom.core.dataformat import COLS
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 

@@ -29,8 +29,9 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Extract a distribution for the selected feature of the population of morphologies among
-   the exponential, normal and uniform distribution, according to the minimum ks distance.
-   """
+the exponential, normal and uniform distribution, according to the minimum ks distance.
+"""
+
 from pathlib import Path
 
 from itertools import chain
@@ -40,7 +41,6 @@ import json
 import neurom as nm
 from neurom import stats
 from neurom.utils import NeuromJSON
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 

@@ -33,12 +33,12 @@ These examples highlight most of the pre-packaged neurom.nm.get
 morphometrics functionality.
 
 """
+
 from pathlib import Path
 
 from pprint import pprint
 import numpy as np
 import neurom as nm
-
 
 PACKAGE_DIR = Path(__file__).resolve().parent.parent
 
