@@ -234,16 +234,8 @@ def plot_soma(
     ax.set_xlabel(plane[0])
     ax.set_ylabel(plane[1])
 
-    bounding_box = geom.bounding_box(soma)
-    ax.dataLim.update_from_data_xy(
-        np.vstack(
-            (
-                [bounding_box[0][plane0], bounding_box[0][plane1]],
-                [bounding_box[1][plane0], bounding_box[1][plane1]],
-            )
-        ),
-        ignore=False,
-    )
+    # Check the data-bearing artists and calculate the minimal bounding box
+    ax.relim()
 
 
 # pylint: disable=too-many-arguments
