@@ -1,4 +1,4 @@
-![NeuroM Logo](https://raw.githubusercontent.com/BlueBrain/NeuroM/master/doc/source/logo/NeuroM.jpg)
+![NeuroM Logo](https://raw.githubusercontent.com/openbraininstitute/NeuroM/master/doc/source/logo/NeuroM.jpg)
 
 
 
