@@ -221,7 +221,7 @@ def plot_soma(
             )
     else:
         if soma_outline:
-            ax.add_artist(
+            ax.add_patch(
                 Circle(soma.center[[plane0, plane1]], soma.radius, color=color, alpha=alpha)
             )
         else:

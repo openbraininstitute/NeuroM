@@ -109,8 +109,10 @@ def fit(data, distribution='norm'):
     Note:
         Uses Kolmogorov-Smirnov test to estimate distance and p-value.
     """
-    params = getattr(_st, distribution).fit(data)
-    return FitResults(params, _st.kstest(data, distribution, params), distribution)
+    dist = getattr(_st, distribution)
+    params = dist.fit(data)
+    # scipy>=1.18: kstest(data, 'norm', args) breaks; pass dist.cdf instead
+    return FitResults(params, _st.kstest(data, dist.cdf, args=params), distribution)
 
 
 def optimal_distribution(data, distr_to_check=('norm', 'expon', 'uniform')):

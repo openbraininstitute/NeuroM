@@ -450,8 +450,14 @@ def pca(points):
 
     Returns:
         Eigenvalues and respective eigenvectors
+
+    Note:
+        np.cov(points.T) produces a real symmetric covariance matrix
+        np.linalg.eigh assumes a hermitian matrix, which is the case here and returns reals
+        np.linalg.eig returns complex values and is not a good fit in this case
     """
-    return np.linalg.eig(np.cov(points.transpose()))
+    eigenvalues, eigenvectors = np.linalg.eigh(np.cov(points.transpose()))
+    return eigenvalues, eigenvectors
 
 
 def sphere_area(r):
