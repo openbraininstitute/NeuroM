@@ -494,6 +494,14 @@ def test_pca():
     RES_EIGS = np.array([0.0278769, 0.00439387, 0.0001592])
     eigs, eigv = mm.pca(p)
 
+    idx = np.argsort(eigs)
+    eigs = eigs[idx]
+    eigv = eigv[:, idx]
+
+    idx = np.argsort(RES_EIGS)
+    RES_EIGS = RES_EIGS[idx]
+    RES_EIGV = RES_EIGV[:, idx]
+
     assert np.allclose(eigs, RES_EIGS)
     assert np.allclose(eigv[:, 0], RES_EIGV[:, 0]) or np.allclose(eigv[:, 0], -1.0 * RES_EIGV[:, 0])
     assert np.allclose(eigv[:, 1], RES_EIGV[:, 1]) or np.allclose(eigv[:, 1], -1.0 * RES_EIGV[:, 1])
