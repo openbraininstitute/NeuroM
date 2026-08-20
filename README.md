@@ -55,4 +55,5 @@ The development of this software was supported by funding to the Blue Brain Proj
 
 For license and authors, see `LICENSE.txt` and `AUTHORS.md` respectively.
 
-Copyright (c) 2015-2022 Blue Brain Project/EPFL
+Copyright (c) 2015-2024 Blue Brain Project/EPFL
+Copyright (c) 2025 Open Brain Institute
