@@ -45,7 +45,8 @@ plotly = [
     'psutil>=5.5.1'
 ]
 docs = [
-    'sphinx-bluebrain-theme',
+    'sphinx>=8.2,<10',
+    'obi-sphinx-theme>=2.0.0',
     'sphinx-autorun',
 ]
 
