@@ -28,7 +28,7 @@ classifiers = [
 dependencies = [
     'click>=7.0',
     'matplotlib>=3.2.1',
-    'morphio>=3.3.6',
+    'morphio>=3.5.0',
     'numpy>=1.8.0',
     'pandas>=1.0.5',
     'pyyaml>=3.10',
@@ -45,7 +45,8 @@ plotly = [
     'psutil>=5.5.1'
 ]
 docs = [
-    'sphinx-bluebrain-theme',
+    'sphinx>=8.2,<10',
+    'obi-sphinx-theme>=2.0.0',
     'sphinx-autorun',
 ]
 

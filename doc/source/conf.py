@@ -141,14 +141,20 @@ autosummary_mock_imports = ['plotly']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx-bluebrain-theme'
+html_theme = 'obi_sphinx_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    "repo_url": "https://github.com/BlueBrain/NeuroM/",
-    "repo_name": "BlueBrain/NeuroM",
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/openbraininstitute/NeuroM",
+            "icon": "fa-brands fa-github",
+        },
+    ],
+    "navbar_align": "left",
 }
 
 

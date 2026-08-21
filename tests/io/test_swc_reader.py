@@ -31,7 +31,7 @@ from pathlib import Path
 import numpy as np
 
 from morphio import RawDataError, MorphioError
-from neurom import load_morphology, NeuriteType
+from neurom import NeuriteType, iter_sections, load_morphology
 
 import pytest
 from numpy.testing import assert_array_equal
@@ -147,5 +147,8 @@ def test_custom_type():
 
 
 def test_undefined_type():
-    with pytest.raises(RawDataError, match='Unsupported section type: 0'):
-        load_morphology(SWC_PATH / 'undefined_type.swc')
+    morphology = load_morphology(SWC_PATH / 'undefined_type.swc')
+    undefined_sections = [
+        section for section in iter_sections(morphology) if section.type == NeuriteType.undefined
+    ]
+    assert len(undefined_sections) == 3
