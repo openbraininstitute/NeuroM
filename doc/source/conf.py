@@ -143,21 +143,6 @@ autosummary_mock_imports = ['plotly']
 # a list of builtin themes.
 html_theme = 'obi_sphinx_theme'
 
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-html_theme_options = {
-    "icon_links": [
-        {
-            "name": "GitHub",
-            "url": "https://github.com/openbraininstitute/NeuroM",
-            "icon": "fa-brands fa-github",
-        },
-    ],
-    "navbar_align": "left",
-}
-
-
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 html_title = 'NeuroM'
