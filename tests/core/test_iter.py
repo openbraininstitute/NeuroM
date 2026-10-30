@@ -94,10 +94,14 @@ def test_iter_neurites_filter_mapping():
 
 def test_iter_population():
     with warnings.catch_warnings(record=True) as w_list:
+        warnings.simplefilter("always", UserWarning)
         for _ in iter_neurites(POP, neurite_order=NeuriteIter.NRN):
             pass
-        assert len(w_list) == 1
-        assert '`iter_neurites` with `neurite_order` over Population' in str(w_list[0].message)
+        user_warnings = [w for w in w_list if issubclass(w.category, UserWarning)]
+        assert len(user_warnings) == 1
+        assert '`iter_neurites` with `neurite_order` over Population' in str(
+            user_warnings[0].message
+        )
 
 
 def test_iter_sections_default():

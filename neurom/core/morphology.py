@@ -30,10 +30,10 @@
 
 import warnings
 from collections import deque
+from functools import cached_property
 
 import morphio
 import numpy as np
-from cached_property import cached_property
 
 from neurom import morphmath
 from neurom.core.dataformat import COLS
